@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.my-Green {
+    color: #23BE0A;
+}
+
+.bg-my-green {
+    background-color: #23BE0A;
+}
+
+.active {
+    background-color: #23BE0A;
+}
