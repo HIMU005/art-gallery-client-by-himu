@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Login = () => {
     const [visible, setVisible] = useState(false);
-
+    const { signInUser, setUser, signInWithGoogle } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
     const handleToggle = () => {
         setVisible(!visible);
     }
@@ -18,7 +20,46 @@ const Login = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
+        const { email, password } = data;
+        setLoginError("");
+        signInUser(email, password)
+            .then(result => {
+                console.log(result.user)
+                setUser(result.user)
+            })
+            .catch(error => {
+                console.log(error);
+                setLoginError("Enter your email and password correctly")
+            })
+    }
+
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+            .then(result => {
+                console.log(result.user)
+                const loggedUser = result.user;
+                const { displayName, email, photoURL } = loggedUser;
+                // console.log(loggedUser);
+                const updateUserData = { displayName, email, photoURL }
+
+
+                fetch('http://localhost:5000/users', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(updateUserData)
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                setUser(result.user)
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
     return (
         <div>
@@ -54,12 +95,18 @@ const Login = () => {
                     <div className=" w-3/4 mx-auto">
                         <input type="submit" value="Login" className="btn btn-outline btn-primary  w-full mt-4" />
                     </div>
-                    <div className=" w-3/4 mx-auto flex justify-between mt-4 gap-4">
-                        <button className="btn btn-primary w-1/3">Google</button>
-                        <button className="btn btn-secondary w-1/3">GitHub</button>
-                    </div>
+                    {
+                        loginError &&
+                        <div className="w-3/4 mx-auto mt-4">
+                            <p className="text-sm text-red-500 font-bold">{loginError}</p>
+                        </div>
+                    }
                 </div>
             </form>
+            <div className=" w-3/4 mx-auto flex justify-between mt-4 gap-4">
+                <button onClick={handleGoogleLogin} className="btn btn-primary w-1/3">Google</button>
+                <button className="btn btn-secondary w-1/3">GitHub</button>
+            </div>
             <div className="w-2/4 mx-auto mb-12">
                 <p className="">Do not have an account? <Link to={'/registration'} className="btn btn-link">Register</Link> here</p>
             </div>

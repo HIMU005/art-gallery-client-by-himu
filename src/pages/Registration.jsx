@@ -30,7 +30,7 @@ const Registration = () => {
     const onSubmit = (data) => {
         const { email, password, photo, name } = data;
         console.log(email, password, name, photo);
-        const userInfo = { name, email, password, photo };
+        const userInfo = { name, email, photo };
         setPassError("");
         setRegisterError("");
 
@@ -68,6 +68,7 @@ const Registration = () => {
                 navigate("/login")
             })
             .catch(error => {
+                console.log(error);
                 setRegisterError('Email already in use');
             })
 

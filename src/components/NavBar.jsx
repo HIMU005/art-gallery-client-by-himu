@@ -1,8 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const NavBar = () => {
 
     const btnStyle = "flex btn btn-outline items-center p-4";
+    const { user, logOut, setUser } = useContext(AuthContext);
+    console.log(user);
+    const navigate = useNavigate();
 
     const links =
         <>
@@ -12,6 +17,15 @@ const NavBar = () => {
             <li><NavLink className={btnStyle} to={'/myCraft'}>My Art&Craft</NavLink></li>
 
         </>
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                navigate("/");
+                setUser(null);
+            })
+            .catch();
+    }
 
     return (
         <div className="navbar bg-base-100">
@@ -31,10 +45,34 @@ const NavBar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end">
+
+            {
+                !user ?
+                    <>
+                        <div className="navbar-end">
+                            <Link to={'/login'}><button className="btn btn-outline btn-primary">LogIn</button></Link>
+                            <Link to={'/registration'}><button className="btn btn-outline btn-primary">Register</button></Link>
+                        </div>
+                    </> :
+                    // after login 
+                    <div className="navbar-end">
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                </div>
+                            </div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+
+                                <li><button onClick={handleLogOut} className="btn btn-error">Logout</button></li>
+                            </ul>
+                        </div>
+                    </div>
+            }
+            {/* <div className="navbar-end">
                 <Link to={'/login'}><button className="btn btn-outline btn-primary">LogIn</button></Link>
                 <Link to={'/registration'}><button className="btn btn-outline btn-primary">Register</button></Link>
-            </div>
+            </div> */}
         </div>
     );
 };
