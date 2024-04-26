@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
+import { toast } from "react-toastify";
 
 
 
@@ -63,9 +64,10 @@ const Registration = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        toast("you have register successfully!!!")
+                        navigate("/login")
                     })
 
-                navigate("/login")
             })
             .catch(error => {
                 console.log(error);

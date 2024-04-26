@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const [visible, setVisible] = useState(false);
     const { signInUser, setUser, signInWithGoogle } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const navigate = useNavigate();
     const handleToggle = () => {
         setVisible(!visible);
     }
@@ -26,6 +28,8 @@ const Login = () => {
             .then(result => {
                 console.log(result.user)
                 setUser(result.user)
+                toast.success("You have logged in successfully")
+                navigate('/');
             })
             .catch(error => {
                 console.log(error);
@@ -54,8 +58,12 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        setUser(result.user)
+                        if (data.insertedId) {
+                            toast.success("You have logged in successfully")
+                            navigate('/');
+                        }
                     })
-                setUser(result.user)
             })
             .catch(error => {
                 console.log(error);

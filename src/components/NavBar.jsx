@@ -6,7 +6,6 @@ const NavBar = () => {
 
     const btnStyle = "flex btn btn-outline items-center p-4";
     const { user, logOut, setUser } = useContext(AuthContext);
-    console.log(user);
     const navigate = useNavigate();
 
     const links =
