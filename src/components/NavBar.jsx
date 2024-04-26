@@ -1,13 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
 
+    const btnStyle = "flex btn btn-outline items-center p-4";
+
     const links =
         <>
-            <li><NavLink className={"flex btn btn-outline items-center p-4"} to={'/'}>Home</NavLink></li>
-            <li><NavLink className={"flex btn btn-outline items-center p-4"} to={"/allCraft"}>All Craft</NavLink></li>
-            <li><NavLink className={"flex btn btn-outline items-center p-4"} to={'/addCraft'}>Add Craft</NavLink></li>
-            <li><NavLink className={"flex btn btn-outline items-center p-4"} to={'/myCraft'}>My Art&Craft</NavLink></li>
+            <li><NavLink className={btnStyle} to={'/'}>Home</NavLink></li>
+            <li><NavLink className={btnStyle} to={"/allCraft"}>All Craft</NavLink></li>
+            <li><NavLink className={btnStyle} to={'/addCraft'}>Add Craft</NavLink></li>
+            <li><NavLink className={btnStyle} to={'/myCraft'}>My Art&Craft</NavLink></li>
 
         </>
 
@@ -22,7 +24,7 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link to={'/'} className="btn btn-ghost text-xl md:text-2xl lg:text-4xl text-my-black"><span className="text-my-green">Himu</span> Art Gallery</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -30,7 +32,8 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn my-Green">Button</a>
+                <Link to={'/login'}><button className="btn btn-outline btn-primary">LogIn</button></Link>
+                <Link to={'/registration'}><button className="btn btn-outline btn-primary">Register</button></Link>
             </div>
         </div>
     );
