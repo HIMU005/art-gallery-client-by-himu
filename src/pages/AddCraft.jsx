@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 const AddCraft = () => {
     const { user } = useContext(AuthContext);
     const [isOpen1, setIsOpen1] = useState(false);
-
     const handleDropdownToggle1 = () => {
         setIsOpen1(!isOpen1);
     };
@@ -64,7 +63,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-primary">Enter image link</span>
                         </div>
-                        <input type="text" name="image" placeholder="Type here" className="input input-bordered input-primary w-full " />
+                        <input type="text" name="image" placeholder="Type here" required className="input input-bordered input-primary w-full " />
                     </label>
 
                     {/* 2 */}
@@ -72,7 +71,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-secondary">Enter item_name</span>
                         </div>
-                        <input type="text" name="item_name" placeholder="Type here" className="input input-bordered input-secondary w-full " />
+                        <input type="text" name="item_name" placeholder="Type here" required className="input input-bordered input-secondary w-full " />
                     </label>
 
                     {/* 3 */}
@@ -80,7 +79,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-accent">Enter subcategory_Name</span>
                         </div>
-                        <input type="text" name="subcategory_Name" placeholder="Type here" className="input input-bordered input-accent w-full " />
+                        <input type="text" name="subcategory_Name" placeholder="Type here" required className="input input-bordered input-accent w-full " />
                     </label>
 
                     {/* 4 */}
@@ -88,7 +87,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-primary">Enter short description</span>
                         </div>
-                        <input type="text" name="short_description" placeholder="Type here" className="input input-bordered input-primary w-full " />
+                        <input type="text" name="short_description" placeholder="Type here" required className="input input-bordered input-primary w-full " />
                     </label>
 
                     {/* 5 */}
@@ -96,7 +95,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-secondary">What is the price</span>
                         </div>
-                        <input type="text" name="price" placeholder="Type here" className="input input-bordered input-secondary w-full " />
+                        <input type="text" name="price" placeholder="Type here" required className="input input-bordered input-secondary w-full " />
                     </label>
 
                     {/* 6 */}
@@ -104,7 +103,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-accent">Enter a rating</span>
                         </div>
-                        <input type="text" name="rating" placeholder="Type here" className="input input-bordered input-accent w-full " />
+                        <input type="text" name="rating" placeholder="Type here" required className="input input-bordered input-accent w-full " />
                     </label>
 
                     {/* 7 */}
@@ -116,6 +115,7 @@ const AddCraft = () => {
                             <select
                                 name="customization"
                                 id="customization"
+                                required
                                 className="input input-bordered input-primary w-full appearance-none"
                                 onClick={handleDropdownToggle1}
                             >
@@ -136,7 +136,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-secondary">what is the processing_time</span>
                         </div>
-                        <input type="text" name="processing_time" placeholder="Type here" className="input input-bordered input-secondary w-full " />
+                        <input type="text" name="processing_time" placeholder="Type here" required className="input input-bordered input-secondary w-full " />
                     </label>
 
                     {/* 9 */}
@@ -148,6 +148,7 @@ const AddCraft = () => {
                             <select
                                 name="stockStatus"
                                 id="stockStatus"
+                                required
                                 className="input input-bordered input-primary w-full appearance-none"
                                 onClick={handleDropdownToggle}
                             >

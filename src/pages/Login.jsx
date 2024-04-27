@@ -4,6 +4,8 @@ import { GrFormView, GrFormViewHide } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
     const [visible, setVisible] = useState(false);
@@ -112,8 +114,8 @@ const Login = () => {
                 </div>
             </form>
             <div className=" w-3/4 mx-auto flex justify-between mt-4 gap-4">
-                <button onClick={handleGoogleLogin} className="btn btn-primary w-1/3">Google</button>
-                <button className="btn btn-secondary w-1/3">GitHub</button>
+                <button onClick={handleGoogleLogin} className="btn btn-primary w-1/3 text-xl"><FcGoogle />Google</button>
+                <button className="btn btn-secondary w-1/3 text-xl"> <FaGithub className="text-black" />   GitHub</button>
             </div>
             <div className="w-2/4 mx-auto mb-12">
                 <p className="">Do not have an account? <Link to={'/registration'} className="btn btn-link">Register</Link> here</p>
