@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 
 const NavBar = () => {
 
@@ -57,7 +58,7 @@ const NavBar = () => {
                     <div className="navbar-end">
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
+                                <div data-tooltip-id="my-tooltip-1" className="w-10 rounded-full">
                                     <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
                                 </div>
                             </div>
@@ -66,7 +67,16 @@ const NavBar = () => {
                                 <li><button onClick={handleLogOut} className="btn btn-error">Logout</button></li>
                             </ul>
                         </div>
+                        <ReactTooltip
+                            id="my-tooltip-1"
+                            place="bottom"
+                            effect="solid"
+                            delayShow={300}
+                        >
+                            {user.displayName}
+                        </ReactTooltip>
                     </div>
+
             }
             {/* <div className="navbar-end">
                 <Link to={'/login'}><button className="btn btn-outline btn-primary">LogIn</button></Link>

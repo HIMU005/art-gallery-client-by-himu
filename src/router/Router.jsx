@@ -36,7 +36,8 @@ const router = createBrowserRouter([
                 element:
                     <PrivateRoute>
                         <MyCraft />
-                    </PrivateRoute>
+                    </PrivateRoute>,
+                // loader: ({params})=> fetch(`http://localhost:5000/crafts/hashanuzzaman99@gmail.com`)
             },
             {
                 path: "login",

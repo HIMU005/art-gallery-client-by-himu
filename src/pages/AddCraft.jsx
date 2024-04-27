@@ -4,15 +4,22 @@ import { toast } from "react-toastify";
 
 const AddCraft = () => {
     const { user } = useContext(AuthContext);
-    const [isOpen1, setIsOpen1] = useState(false);
-    const handleDropdownToggle1 = () => {
-        setIsOpen1(!isOpen1);
-    };
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const handleDropdownToggle = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const [isOpen, setIsOpen] = useState(false);
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
     };
+
+    const [isOpen2, setIsOpen2] = useState(false);
+    const handleDropdownToggle2 = () => {
+        setIsOpen2(!isOpen2);
+    };
+
+    const [isOpen3, setIsOpen3] = useState(false);
+    const handleDropdownToggle3 = () => {
+        setIsOpen3(!isOpen3);
+    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -75,11 +82,32 @@ const AddCraft = () => {
                     </label>
 
                     {/* 3 */}
-                    <label className="form-control w-full">
+                    <label className="form-control w-full relative">
                         <div className="label">
                             <span className="label-text text-base font-medium text-accent">Enter subcategory_Name</span>
                         </div>
-                        <input type="text" name="subcategory_Name" placeholder="Type here" required className="input input-bordered input-accent w-full " />
+                        <div className="relative inline-block w-full">
+                            <select
+                                name="subcategory_Name"
+                                id="subcategory_Name"
+                                required
+                                className="input input-bordered input-accent w-full appearance-none"
+                                onClick={handleToggle}
+                            >
+                                <option value="">Select a subcategory</option>
+                                <option value="Landscape">Landscape</option>
+                                <option value="Portrait">Portrait</option>
+                                <option value="Watercolor">Watercolor</option>
+                                <option value="Oil">Oil</option>
+                                <option value="Charcoal">Charcoal</option>
+                                <option value="Cartoon">Cartoon</option>
+                            </select>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg className={`w-4 h-4 transform ${isOpen ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
                     </label>
 
                     {/* 4 */}
@@ -117,14 +145,14 @@ const AddCraft = () => {
                                 id="customization"
                                 required
                                 className="input input-bordered input-primary w-full appearance-none"
-                                onClick={handleDropdownToggle1}
+                                onClick={handleDropdownToggle2}
                             >
                                 <option value="">Select an option</option>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg className={`w-4 h-4 transform ${isOpen1 ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg className={`w-4 h-4 transform ${isOpen2 ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </div>
@@ -150,14 +178,14 @@ const AddCraft = () => {
                                 id="stockStatus"
                                 required
                                 className="input input-bordered input-primary w-full appearance-none"
-                                onClick={handleDropdownToggle}
+                                onClick={handleDropdownToggle3}
                             >
                                 <option value="">Select an option</option>
                                 <option value="inStock">In Stock</option>
                                 <option value="madeToOrder">Made to Order</option>
                             </select>
                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg className={`w-4 h-4 transform ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg className={`w-4 h-4 transform ${isOpen3 ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </div>
