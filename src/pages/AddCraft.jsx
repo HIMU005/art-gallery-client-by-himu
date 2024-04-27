@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 const AddCraft = () => {
     const { user } = useContext(AuthContext);
+    // console.log(user);
 
     const [isOpen, setIsOpen] = useState(false);
     const handleToggle = () => {
@@ -170,14 +171,14 @@ const AddCraft = () => {
                     {/* 9 */}
                     <label className="form-control w-full relative">
                         <div className="label">
-                            <span className="label-text text-base font-medium text-primary">stockStatus</span>
+                            <span className="label-text text-base font-medium text-accent">stockStatus</span>
                         </div>
                         <div className="relative inline-block w-full">
                             <select
                                 name="stockStatus"
                                 id="stockStatus"
                                 required
-                                className="input input-bordered input-primary w-full appearance-none"
+                                className="input input-bordered input-accent w-full appearance-none"
                                 onClick={handleDropdownToggle3}
                             >
                                 <option value="">Select an option</option>
@@ -190,6 +191,22 @@ const AddCraft = () => {
                                 </svg>
                             </div>
                         </div>
+                    </label>
+
+                    {/* 10 */}
+                    <label className="form-control w-full">
+                        <div className="label">
+                            <span className="label-text text-base font-medium text-primary">Your name</span>
+                        </div>
+                        <input type="text" name="processing_time" value={user?.displayName} disabled className="input input-bordered input-primary w-full " />
+                    </label>
+
+                    {/* 11 */}
+                    <label className="form-control w-full">
+                        <div className="label">
+                            <span className="label-text text-base font-medium text-secondary">Your Email</span>
+                        </div>
+                        <input type="text" name="processing_time" value={user.email} disabled className="input input-bordered input-secondary w-full " />
                     </label>
 
                 </div>

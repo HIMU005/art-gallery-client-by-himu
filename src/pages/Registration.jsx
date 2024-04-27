@@ -4,6 +4,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
 import { toast } from "react-toastify";
+import { updateProfile } from "firebase/auth";
 
 
 
@@ -31,7 +32,6 @@ const Registration = () => {
     const onSubmit = (data) => {
         const { email, password, photo, name } = data;
         console.log(email, password, name, photo);
-        const userInfo = { name, email, photo };
         setPassError("");
         setRegisterError("");
 
@@ -52,22 +52,12 @@ const Registration = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result);
-
-                fetch('http://localhost:5000/users', {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(userInfo)
-
+                toast("you have register successfully!!!")
+                navigate("/login")
+                updateProfile(result.user, {
+                    displayName: name,
+                    photoURL: photo,
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        toast("you have register successfully!!!")
-                        navigate("/login")
-                    })
-
             })
             .catch(error => {
                 console.log(error);

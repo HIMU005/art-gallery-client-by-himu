@@ -28,9 +28,8 @@ const Login = () => {
         setLoginError("");
         signInUser(email, password)
             .then(result => {
-                console.log(result.user)
                 setUser(result.user)
-                toast.success("You have logged in successfully")
+                toast.success(`${result.user.name} have logged in successfully`)
                 navigate('/');
             })
             .catch(error => {
@@ -42,30 +41,9 @@ const Login = () => {
     const handleGoogleLogin = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user)
-                const loggedUser = result.user;
-                const { displayName, email, photoURL } = loggedUser;
-                // console.log(loggedUser);
-                const updateUserData = { displayName, email, photoURL }
-
-
-                fetch('http://localhost:5000/users', {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(updateUserData)
-
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        setUser(result.user)
-                        if (data.insertedId) {
-                            toast.success("You have logged in successfully")
-                            navigate('/');
-                        }
-                    })
+                setUser(result.user)
+                toast.success(`${result.user.name} have logged in successfully`)
+                navigate('/');
             })
             .catch(error => {
                 console.log(error);
