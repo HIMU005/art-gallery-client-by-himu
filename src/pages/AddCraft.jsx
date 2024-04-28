@@ -97,12 +97,12 @@ const AddCraft = () => {
                                 onClick={handleToggle}
                             >
                                 <option value="">Select a subcategory</option>
-                                <option value="Landscape">Landscape</option>
-                                <option value="Portrait">Portrait</option>
-                                <option value="Watercolor">Watercolor</option>
-                                <option value="Oil">Oil</option>
-                                <option value="Charcoal">Charcoal</option>
-                                <option value="Cartoon">Cartoon</option>
+                                <option value="landscape">Landscape</option>
+                                <option value="portrait">Portrait</option>
+                                <option value="watercolor">Watercolor</option>
+                                <option value="oil">Oil</option>
+                                <option value="charcoal">Charcoal</option>
+                                <option value="cartoon">Cartoon</option>
                             </select>
                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                 <svg className={`w-4 h-4 transform ${isOpen ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

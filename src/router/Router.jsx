@@ -10,6 +10,7 @@ import Registration from "../pages/Registration";
 import PrivateRoute from "./PrivateRoute";
 import UpdateCraft from "../pages/UpdateCraft";
 import Details from "../pages/Details";
+import CatCraftCard from "../pages/CatCraftCard";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,15 @@ const router = createBrowserRouter([
                     </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/crafts-info/${params.id}`),
             },
+            {
+                path: "/craft/cat/:catName",
+                element:
+                    <PrivateRoute>
+                        <CatCraftCard />
+                    </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/crafts-cat/${params.catName}`),
+
+            }
         ],
     },
 ]);
