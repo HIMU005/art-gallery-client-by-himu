@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { CiEdit } from 'react-icons/ci';
+import { FaStar } from 'react-icons/fa';
+import { IoMdTime } from 'react-icons/io';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -36,7 +38,6 @@ const MyCraftCard = ({ cardData }) => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
                             if (data.deletedCount) {
                                 Swal.fire({
                                     title: "Deleted!",
@@ -68,8 +69,10 @@ const MyCraftCard = ({ cardData }) => {
                         <p className="leading-snug dark:text-gray-600">{short_description}.</p>
                         <p>Stock status: {stockStatus}</p>
                         <div className='flex gap-2 justify-between'>
-                            <h2>Rating: {rating}</h2>
-                            <h2>processing Time: {processing_time}</h2>
+                            <h2 className='flex gap-3 items-center'><FaStar className='text-amber-400 font-extrabold fill-amber-500 ' />
+                                {rating}</h2>
+                            <h2 className='flex gap-2 items-center'><IoMdTime className='text-sky-500' />
+                                {processing_time}</h2>
                         </div>
                         <p>Customization: {customization}</p>
                         <div className='text-5xl flex gap-5'>

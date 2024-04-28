@@ -5,14 +5,14 @@ import MyCraftCard from "../components/MyCraftCard";
 const MyCraft = () => {
     const { user } = useContext(AuthContext);
     const [myUploadedData, setMyUploadedDAta] = useState([]);
-    console.log(user.email);
+    // console.log(user.email);
     useEffect(() => {
         fetch(`http://localhost:5000/crafts/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyUploadedDAta(data);
             })
-    }, [user])
+    }, [user, myUploadedData])
     return (
         <div>
 
