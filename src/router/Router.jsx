@@ -8,6 +8,7 @@ import MyCraft from "../pages/MyCraft";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
 import PrivateRoute from "./PrivateRoute";
+import UpdateCraft from "../pages/UpdateCraft";
 
 const router = createBrowserRouter([
     {
@@ -37,15 +38,22 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <MyCraft />
                     </PrivateRoute>,
-                // loader: ({params})=> fetch(`http://localhost:5000/crafts/hashanuzzaman99@gmail.com`)
             },
             {
-                path: "login",
+                path: "/login",
                 element: <Login />,
             },
             {
-                path: "registration",
+                path: "/registration",
                 element: <Registration />
+            },
+            {
+                path: "/update/:id",
+                element:
+                    <PrivateRoute>
+                        <UpdateCraft />
+                    </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/crafts-info/${params.id}`),
             }
         ],
     },

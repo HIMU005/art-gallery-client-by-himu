@@ -1,8 +1,11 @@
 import { useContext, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
-const AddCraft = () => {
+const UpdateCraft = () => {
+    const updateData = useLoaderData();
+    // console.log(updateData);
     const { user } = useContext(AuthContext);
     // console.log(user);
 
@@ -20,9 +23,13 @@ const AddCraft = () => {
     const handleDropdownToggle3 = () => {
         setIsOpen3(!isOpen3);
     };
+    const {
+        // email,
+        _id,
+        image, customization, item_name, processing_time, rating, short_description, price, stockStatus, subcategory_Name,
+    } = updateData;
 
-
-    const handleSubmit = (e) => {
+    const handleUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -41,29 +48,46 @@ const AddCraft = () => {
             email, image, item_name, subcategory_Name, short_description, price, rating, customization, processing_time, stockStatus
         };
         console.log(addCartDetails);
-
-        fetch('http://localhost:5000/crafts', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(addCartDetails)
+        Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
-                    toast("craft updated successfully");
-                    form.reset();
+            .then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                    fetch(`http://localhost:5000/crafts-info/${_id}`, {
+                        method: "PUT",
+                        headers: {
+                            "content-type": "application/json",
+                        },
+                        body: JSON.stringify(addCartDetails)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.modifiedCount) {
+                                form.reset();
+                            }
+                        })
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
                 }
-            })
+            });
+
+
 
 
 
     }
+
+
     return (
         <div>
-            <form onSubmit={handleSubmit} className="w-3/4 mx-auto">
+            <form onSubmit={handleUpdate} className="w-3/4 mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
 
@@ -72,7 +96,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-primary">Enter image link</span>
                         </div>
-                        <input type="text" name="image" placeholder="Type here" required className="input input-bordered input-primary w-full " />
+                        <input type="text" name="image" placeholder="Type here" defaultValue={image} required className="input input-bordered input-primary w-full " />
                     </label>
 
                     {/* 2 */}
@@ -80,7 +104,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-secondary">Enter item_name</span>
                         </div>
-                        <input type="text" name="item_name" placeholder="Type here" required className="input input-bordered input-secondary w-full " />
+                        <input type="text" name="item_name" placeholder="Type here" defaultValue={item_name} required className="input input-bordered input-secondary w-full " />
                     </label>
 
                     {/* 3 */}
@@ -95,6 +119,7 @@ const AddCraft = () => {
                                 required
                                 className="input input-bordered input-accent w-full appearance-none"
                                 onClick={handleToggle}
+                                defaultValue={subcategory_Name}
                             >
                                 <option value="">Select a subcategory</option>
                                 <option value="Landscape">Landscape</option>
@@ -117,7 +142,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-primary">Enter short description</span>
                         </div>
-                        <input type="text" name="short_description" placeholder="Type here" required className="input input-bordered input-primary w-full " />
+                        <input type="text" name="short_description" placeholder="Type here" defaultValue={short_description} required className="input input-bordered input-primary w-full " />
                     </label>
 
                     {/* 5 */}
@@ -125,7 +150,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-secondary">What is the price</span>
                         </div>
-                        <input type="text" name="price" placeholder="Type here" required className="input input-bordered input-secondary w-full " />
+                        <input type="text" name="price" placeholder="Type here" defaultValue={price} required className="input input-bordered input-secondary w-full " />
                     </label>
 
                     {/* 6 */}
@@ -133,7 +158,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-accent">Enter a rating</span>
                         </div>
-                        <input type="text" name="rating" placeholder="Type here" required className="input input-bordered input-accent w-full " />
+                        <input type="text" name="rating" placeholder="Type here" defaultValue={rating} required className="input input-bordered input-accent w-full " />
                     </label>
 
                     {/* 7 */}
@@ -148,6 +173,7 @@ const AddCraft = () => {
                                 required
                                 className="input input-bordered input-primary w-full appearance-none"
                                 onClick={handleDropdownToggle2}
+                                defaultValue={customization}
                             >
                                 <option value="">Select an option</option>
                                 <option value="yes">Yes</option>
@@ -166,7 +192,7 @@ const AddCraft = () => {
                         <div className="label">
                             <span className="label-text text-base font-medium text-secondary">what is the processing_time</span>
                         </div>
-                        <input type="text" name="processing_time" placeholder="Type here" required className="input input-bordered input-secondary w-full " />
+                        <input type="text" name="processing_time" placeholder="Type here" defaultValue={processing_time} required className="input input-bordered input-secondary w-full " />
                     </label>
 
                     {/* 9 */}
@@ -181,6 +207,7 @@ const AddCraft = () => {
                                 required
                                 className="input input-bordered input-accent w-full appearance-none"
                                 onClick={handleDropdownToggle3}
+                                defaultValue={stockStatus}
                             >
                                 <option value="">Select an option</option>
                                 <option value="inStock">In Stock</option>
@@ -211,10 +238,11 @@ const AddCraft = () => {
                     </label>
 
                 </div>
-                <input className="btn btn-success btn-outline w-full mt-3" type="submit" value="Add" />
+                <input className="btn btn-success btn-outline w-full mt-3" type="submit" value="Update" />
             </form >
-        </div >
+
+        </div>
     );
 };
 
-export default AddCraft;
+export default UpdateCraft;
