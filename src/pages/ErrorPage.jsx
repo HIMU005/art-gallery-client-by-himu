@@ -2,7 +2,7 @@
 const ErrorPage = () => {
     return (
         <div>
-            <h2 className="text-7xl text-black font-black text-center">404</h2>
+            <img src="https://i.ibb.co/PjDzyQ8/main-how-to-design-404-page.webp" alt="" />
         </div>
     );
 };

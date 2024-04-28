@@ -17,7 +17,6 @@ const Banner = () => {
     }, [])
 
     const bannerData = loadData.slice(0, 3);
-    console.log(bannerData);
 
     return (
         <div>
