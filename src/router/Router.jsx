@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: "/allCraft",
                 element: <AllCraft />,
-                loader: () => fetch("http://localhost:5000/crafts"),
+                loader: () => fetch("https://authentication-and-simple-database-server.vercel.app/crafts"),
             },
             {
                 path: "/addCraft",
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <UpdateCraft />
                     </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/crafts-info/${params.id}`),
+                loader: ({ params }) => fetch(`https://authentication-and-simple-database-server.vercel.app/crafts-info/${params.id}`),
             },
             {
                 path: '/myCraft/details/:id',
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <Details />
                     </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/crafts-info/${params.id}`),
+                loader: ({ params }) => fetch(`https://authentication-and-simple-database-server.vercel.app/crafts-info/${params.id}`),
             },
             {
                 path: "/craft/cat/:catName",
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <CatCraftCard />
                     </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/crafts-cat/${params.catName}`),
+                loader: ({ params }) => fetch(`https://authentication-and-simple-database-server.vercel.app/crafts-cat/${params.catName}`),
 
             }
         ],

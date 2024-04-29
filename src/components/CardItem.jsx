@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 const CardItem = () => {
     const [category, setCategory] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/category")
+        fetch("https://authentication-and-simple-database-server.vercel.app/category")
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
     // console.log(category);
     return (
         <div>
-            <h3 className="text-3xl md:text-4xl lg:text-6xl text-center font-bold my-8 ">Categories</h3>
+            <h3 className="text-3xl md:text-4xl lg:text-6xl text-center font-bold my-8 text-[#131313]">Categories</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 mx-auto ">
                 {

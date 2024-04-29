@@ -42,7 +42,7 @@ const AddCraft = () => {
         };
         console.log(addCartDetails);
 
-        fetch('http://localhost:5000/crafts', {
+        fetch('https://authentication-and-simple-database-server.vercel.app/crafts', {
             method: "POST",
             headers: {
                 "content-type": "application/json",

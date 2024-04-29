@@ -59,7 +59,7 @@ const UpdateCraft = () => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     Swal.fire("Saved!", "", "success");
-                    fetch(`http://localhost:5000/crafts-info/${_id}`, {
+                    fetch(`https://authentication-and-simple-database-server.vercel.app/crafts-info/${_id}`, {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",

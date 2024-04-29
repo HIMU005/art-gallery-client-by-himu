@@ -7,7 +7,7 @@ const MyCraft = () => {
     const [myUploadedData, setMyUploadedDAta] = useState([]);
     // console.log(user.email);
     useEffect(() => {
-        fetch(`http://localhost:5000/crafts/${user.email}`)
+        fetch(`https://authentication-and-simple-database-server.vercel.app/crafts/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyUploadedDAta(data);

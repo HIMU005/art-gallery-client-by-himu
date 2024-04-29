@@ -11,7 +11,7 @@ import Slider from "./Slider";
 const Banner = () => {
     const [loadData, setLoadData] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/crafts/")
+        fetch("https://authentication-and-simple-database-server.vercel.app/crafts/")
             .then(res => res.json())
             .then(data => setLoadData(data))
     }, [])
@@ -19,7 +19,8 @@ const Banner = () => {
     const bannerData = loadData.slice(0, 3);
 
     return (
-        <div>
+        <div className="w-11/12 mx-auto">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold md:font-bold my-4">We welcome you to our Gallery</h1>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
