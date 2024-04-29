@@ -9,7 +9,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
     const [visible, setVisible] = useState(false);
-    const { signInUser, setUser, signInWithGoogle } = useContext(AuthContext);
+    const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
     const handleToggle = () => {
@@ -40,6 +40,17 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         signInWithGoogle()
+            .then(result => {
+                setUser(result.user)
+                toast.success(`${result.user.name} have logged in successfully`)
+                navigate('/');
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+    const handleGithubLogin = () => {
+        signInWithGithub()
             .then(result => {
                 setUser(result.user)
                 toast.success(`${result.user.name} have logged in successfully`)
@@ -93,7 +104,7 @@ const Login = () => {
             </form>
             <div className=" w-3/4 mx-auto flex justify-between mt-4 gap-4">
                 <button onClick={handleGoogleLogin} className="btn btn-primary w-1/3 text-xl"><FcGoogle />Google</button>
-                <button className="btn btn-secondary w-1/3 text-xl"> <FaGithub className="text-black" />   GitHub</button>
+                <button onClick={handleGithubLogin} className="btn btn-secondary w-1/3 text-xl"> <FaGithub className="text-black" />   GitHub</button>
             </div>
             <div className="w-2/4 mx-auto mb-12">
                 <p className="">Do not have an account? <Link to={'/registration'} className="btn btn-link">Register</Link> here</p>
