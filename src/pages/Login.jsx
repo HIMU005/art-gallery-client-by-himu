@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
@@ -12,6 +12,7 @@ const Login = () => {
     const { signInUser, setUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
     const handleToggle = () => {
         setVisible(!visible);
     }
@@ -30,7 +31,7 @@ const Login = () => {
             .then(result => {
                 setUser(result.user)
                 toast.success(`${result.user.name} have logged in successfully`)
-                navigate('/');
+                navigate(location.state || '/');
             })
             .catch(error => {
                 console.log(error);
@@ -43,7 +44,7 @@ const Login = () => {
             .then(result => {
                 setUser(result.user)
                 toast.success(`${result.user.name} have logged in successfully`)
-                navigate('/');
+                navigate(location.state || '/');
             })
             .catch(error => {
                 console.log(error);
@@ -54,7 +55,7 @@ const Login = () => {
             .then(result => {
                 setUser(result.user)
                 toast.success(`${result.user.name} have logged in successfully`)
-                navigate('/');
+                navigate(location.state || '/');
             })
             .catch(error => {
                 console.log(error);

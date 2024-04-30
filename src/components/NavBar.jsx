@@ -6,8 +6,9 @@ import { Tooltip as ReactTooltip } from 'react-tooltip'
 const NavBar = () => {
     const [theme, setTheme] = useState('light');
     useEffect(() => {
-        localStorage.setItem('theme', theme);
-        const localTheme = localStorage.getItem('theme');
+        const localTheme = localStorage.getItem('theme') || 'light';
+        setTheme(localTheme);
+        localStorage.setItem('theme', localTheme);
         document.querySelector('html').setAttribute('data-theme', localTheme)
     }, [theme])
 
@@ -17,13 +18,12 @@ const NavBar = () => {
 
 
     const handleThemeToggle = e => {
-        // console.log(e.target.checked);
-        if (e.target.checked) {
-            setTheme("dark");
-        }
-        else {
-            setTheme('light');
-        }
+
+        const newTheme = e.target.checked ? 'dark' : 'light';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.querySelector('html').setAttribute('data-theme', newTheme);
+
     }
 
     const themControl = <>
