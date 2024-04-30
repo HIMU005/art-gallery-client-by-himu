@@ -35,18 +35,18 @@ const Registration = () => {
         setPassError("");
         setRegisterError("");
 
-        // if (password.length < 6) {
-        //     setPassError("Password must be 6 character or longer")
-        //     return;
-        // }
-        // if (/^(?=.*[A-Z]).+$/.test.password) {
-        //     setPassError("Password must contain one Uppercase letter");
-        //     return;
-        // }
-        // if (/^(?=.*[a-z]).+$/.test.password) {
-        //     setPassError("Password must contain one LowerCase letter");
-        //     return;
-        // }
+        if (password.length < 6) {
+            setPassError("Password must be 6 character or longer")
+            return;
+        }
+        if (/^(?=.*[A-Z]).+$/.test.password) {
+            setPassError("Password must contain one Uppercase letter");
+            return;
+        }
+        if (/^(?=.*[a-z]).+$/.test.password) {
+            setPassError("Password must contain one LowerCase letter");
+            return;
+        }
 
 
         createUser(email, password)
