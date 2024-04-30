@@ -55,34 +55,32 @@ const MyCraftCard = ({ cardData }) => {
         <div>
             <div className="max-w-lg p-4 shadow-md dark:bg-gray-50 dark:text-gray-800">
 
-                <div className="space-y-4">
+                <div className="space-y-4 flex flex-col justify-between h-[810px]">
                     <div className="space-y-1">
                         <img src={image} alt="" className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500" />
                         <div className="flex items-center text-lg">
                             <span>{item_name}</span>
                         </div>
                     </div>
-                    <div className="space-y-2">
-                        <a rel="noopener noreferrer" href="#" className="block">
-                            <h3 className="text-3xl font-semibold dark:text-violet-600">{subcategory_Name}</h3>
-                        </a>
-                        <p className="leading-snug dark:text-gray-600">{short_description}.</p>
-                        <p>Stock status: {stockStatus}</p>
-                        <div className='flex gap-2 justify-between'>
-                            <h2 className='flex gap-3 items-center'><FaStar className='text-amber-400 font-extrabold fill-amber-500 ' />
-                                {rating}</h2>
-                            <h2 className='flex gap-2 items-center'><IoMdTime className='text-sky-500' />
-                                {processing_time}</h2>
-                        </div>
-                        <p>Customization: {customization}</p>
-                        <div className='text-5xl flex gap-5'>
-                            <button onClick={() => handleDelete(_id)} className='btn text-5xl btn-error btn-outline'>
-                                <MdDeleteForever className='text-red-600 cursor-pointer ' />
-                            </button>
-                            <Link to={`/update/${_id}`} className='btn text-5xl btn-info btn-outline'>
-                                <CiEdit className='text-primary cursor-pointer ' />
-                            </Link>
-                        </div>
+                    <a rel="noopener noreferrer" href="#" className="block">
+                        <h3 className="text-3xl font-semibold dark:text-violet-600">{subcategory_Name}</h3>
+                    </a>
+                    <p className="leading-snug dark:text-gray-600">{short_description}.</p>
+                    <p>Stock status: {stockStatus}</p>
+                    <div className='flex gap-2 justify-between'>
+                        <h2 className='flex gap-3 items-center'><FaStar className='text-amber-400 font-extrabold fill-amber-500 ' />
+                            {rating}</h2>
+                        <h2 className='flex gap-2 items-center'><IoMdTime className='text-sky-500' />
+                            {processing_time}</h2>
+                    </div>
+                    <p>Customization: {customization}</p>
+                    <div className='text-5xl flex gap-5'>
+                        <button onClick={() => handleDelete(_id)} className='btn text-5xl btn-error btn-outline'>
+                            <MdDeleteForever className='text-red-600 cursor-pointer ' />
+                        </button>
+                        <Link to={`/update/${_id}`} className='btn text-5xl btn-info btn-outline'>
+                            <CiEdit className='text-primary cursor-pointer ' />
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -11,3 +11,4 @@ feature of my website->
 used react package for challenges part ->
 
 1. react tooltips
+2. react simple Typewriter
