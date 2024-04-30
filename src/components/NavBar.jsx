@@ -25,7 +25,7 @@ const NavBar = () => {
             setTheme('light');
         }
     }
-    console.log(theme);
+
     const themControl = <>
         <label onChange={handleThemeToggle} className="cursor-pointer grid place-items-center">
             <input type="checkbox" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />

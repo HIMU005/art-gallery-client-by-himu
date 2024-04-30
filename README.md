@@ -1,8 +1,13 @@
-# React + Vite
+live link: https://authentication-and-datab-2950f.web.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+feature of my website->
 
-Currently, two official plugins are available:
+1. normal user can see all the post card but not the details
+2. a logged in user can see his port card and see the details of any card
+3. logged in user can add card
+4. logged in user can update and delete his posted card
+5. user can log in with his github, and gmail account
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+used react package for challenges part ->
+
+1. react tooltips
