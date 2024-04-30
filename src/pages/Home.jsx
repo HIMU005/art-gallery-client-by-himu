@@ -1,5 +1,6 @@
 import Banner from "../components/Banner";
 import CardItem from "../components/CardItem";
+import Feedback from "../components/Feedback";
 import Type from "../components/Type";
 import WhyUs from "../components/WhyUs";
 
@@ -10,6 +11,7 @@ const Home = () => {
             <Type />
             <CardItem />
             <WhyUs />
+            <Feedback />
         </div>
     );
 };
